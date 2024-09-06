@@ -14,16 +14,17 @@ Cozzite builds off of bazzite-gnome, and leaves Gnome available since COSMIC is 
 
 It also includes some personal changes:
 
-- Adds VS Code
+- Add VS Code
 
 Cozzite also includes many security changes from [secureblue](https://github.com/secureblue/secureblue):
 
-- Add password quality check
-- Add locking the user after multiple failed attempts
 - Add per-network MAC randomization
 - Blocklist unused kernel modules
+- Brute force protection by locking user accounts for 24 hours after 50 failed login attempts, hardened password encryption and password quality suggestions
+- Configure chronyd to use Network Time Security (NTS)
 - Disable core dumps
 - Disable VS Code telemetry settings
+- Set various hardened sysctl values
 
 ## Installation
 
