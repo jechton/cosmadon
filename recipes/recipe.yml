@@ -20,5 +20,6 @@ modules:
     scripts:
       - createautostartdir.sh
       - authselect.sh
+      - httpsmirrors.sh
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully

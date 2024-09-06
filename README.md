@@ -26,6 +26,7 @@ Cozzite also includes many security changes from [secureblue](https://github.com
 - Disable VS Code telemetry settings
 - Remove unmaintained fuse
 - Set various hardened sysctl values
+- Use HTTPS for rpm mirrors
 
 ## Installation
 
