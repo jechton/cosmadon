@@ -10,7 +10,7 @@ Bazzite + COSMIC
 
 ## Changes
 
-Cozzite builds off of bazzite-gnome, and leaves Gnome available since COSMIC is in an alpha state.
+Cozzite builds off of bazzite-gnome, and leaves GNOME available since COSMIC is in an alpha state.
 
 It also includes some personal changes:
 

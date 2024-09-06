@@ -1,0 +1,197 @@
+title: Welcome to cozzite!
+properties:
+  mode: "run-once"
+screens:
+  first-screen:
+    source: yafti.screen.title
+    values:
+      title: "Welcome to cozzite!"
+      icon: "/path/to/icon"
+      description: |
+        This guided installer will help you get started with your new system.
+
+  can-we-modify-your-flatpaks:
+    source: yafti.screen.consent
+    values:
+      title: Flathub setup
+      description: |
+        This step will remove all Fedora and Flathub Flatpaks from your system and replace them with Flathub's Verified repository. It will not reinstall your flatpaks. It will also disable the system flatpaks in favor of user flatpaks.
+      actions:
+        - run: flatpak remote-delete --system --force fedora
+        - run: flatpak remote-delete --user --force fedora
+        - run: flatpak remote-delete --system --force flathub
+        - run: flatpak remote-delete --user --force flathub
+        - run: flatpak remove --system --noninteractive --all
+        - run: flatpak remote-add --if-not-exists --user --subset=verified flathub-verified https://flathub.org/repo/flathub.flatpakrepo
+
+  applications:
+    source: yafti.screen.package
+    values:
+      title: Application installer
+      show_terminal: true
+      package_manager: yafti.plugin.flatpak
+      package_manager_defaults:
+        user: true
+        system: false
+      groups:
+        Core GNOME apps:
+          description: Core system applications for the GNOME desktop environment.
+          default: false
+          packages:
+            - Calculator: org.gnome.Calculator
+            - Calendar: org.gnome.Calendar
+            - Camera: org.gnome.Snapshot
+            - Characters: org.gnome.Characters
+            - Clocks: org.gnome.clocks
+            - Connections: org.gnome.Connections
+            - Contacts: org.gnome.Contacts
+            - Disk Usage Analyzer: org.gnome.baobab
+            - Document Scanner: org.gnome.SimpleScan
+            - Document Viewer: org.gnome.Evince
+            - Extension Manager: com.mattjakeman.ExtensionManager
+            - Font Viewer: org.gnome.font-viewer
+            - Image Viewer: org.gnome.Loupe
+            - Logs: org.gnome.Logs
+            - Maps: org.gnome.Maps
+            - Photos (Organizer): org.gnome.Photos
+            - Sushi (Nautilus Previewer): org.gnome.NautilusPreviewer
+            - Text Editor: org.gnome.TextEditor
+            - Weather: org.gnome.Weather
+
+        Core KDE Plasma Apps:
+          description: Core system applications for the KDE Plasma desktop environment.
+          default: false
+          packages:
+            - Gwenview: org.kde.gwenview
+
+        System Apps:
+          description: System applications for all desktop environments.
+          default: true
+          packages:
+            - Barrier: com.github.debauchee.barrier
+            - Bitwarden: com.bitwarden.desktop
+            - Calibre: com.calibre_ebook.calibre
+            - DejaDup: org.gnome.DejaDup
+            - Easy Effects: com.github.wwmm.easyeffects
+            - Fedora Media Writer: org.fedoraproject.MediaWriter
+            - Flatseal (Permission Manager): com.github.tchx84.Flatseal
+            - JamesDSP: me.timschneeberger.jdsp4linux
+            - KeePassXC: org.keepassxc.KeePassXC
+            - Main Menu: page.codeberg.libre_menu_editor.LibreMenuEditor
+            - Metadata Cleaner: fr.romainvigier.MetadataCleaner
+            - Pika Backup: org.gnome.World.PikaBackup
+            - qBittorrent: org.qbittorrent.qBittorrent
+            - Resources: net.nokyan.Resources
+            - SaveDesktop: io.github.vikdevelop.SaveDesktop
+            - Solaar: io.github.pwr_solaar.solaar
+            - Syncthing: com.github.zocker_160.SyncThingy
+            - VLC: org.videolan.VLC
+
+        Gaming:
+          description: "Launchers and stuff."
+          default: false
+          packages:
+            - BoilR: io.github.philipk.boilr
+            - Bottles: com.usebottles.bottles
+            - Heroic Games Launcher (GOG &amp; Epic): com.heroicgameslauncher.hgl
+            - itch: io.itch.itch
+            - ludusavi (Game Save Backup): com.github.mtkennerly.ludusavi
+            - Minecraft (Prism Launcher): org.prismlauncher.PrismLauncher
+            - Minecraft Bedrock Launcher: io.mrarm.mcpelauncher
+            - Moonlight: com.moonlight_stream.Moonlight
+            - osu: sh.ppy.osu
+            - Steam Link: com.valvesoftware.SteamLink
+
+        Office and Productivity:
+          description: Bow to capitalism.
+          default: false
+          packages:
+            - Ardour: org.ardour.Ardour
+            - Blender: org.blender.Blender
+            - darktable: org.darktable.Darktable
+            - GIMP: org.gimp.GIMP
+            - Inkscape: org.inkscape.Inkscape
+            - Joplin: net.cozic.joplin_desktop
+            - Kdenlive: org.kde.kdenlive
+            - Krita: org.kde.krita
+            - LibreOffice: org.libreoffice.LibreOffice
+            - Obsidian: md.obsidian.Obsidian
+            - OnlyOffice: org.onlyoffice.desktopeditors
+            - Planify: io.github.alainm23.planify
+            - Slack: com.slack.Slack
+            - Standard Notes: org.standardnotes.standardnotes
+            - Tenacity: org.tenacityaudio.Tenacity
+            - Thunderbird Email: org.mozilla.Thunderbird
+            - Xournal++: com.github.xournalpp.xournalpp
+
+    configure-cozzite:
+      source: yafti.screen.package
+      values:
+        title: Setting up Cozzite
+        show_terminal: true
+        package_manager: yafti.plugin.run
+        groups:
+          Add input group to current user:
+            description: Adds the input group to your current user. Required by certain controller drivers.
+            default: true
+            packages:
+              - Set input group: sudo -A ujust add-user-to-input-group
+          Sunshine:
+            description: A self-hosted game stream host for Moonlight
+            default: false
+            packages:
+              - Install Sunshine: ujust setup-sunshine install
+              - Autostart Sunshine: ujust setup-sunshine autostart
+          EmuDeck:
+            description: A utility for installing and configuring emulators.
+            default: false
+            packages:
+              - Retrieve EmuDeck: ujust install-emudeck
+          OpenRazer:
+            description: Enables additional capabilities for Razer Hardware
+            default: false
+            packages:
+              - Install OpenRazer: ujust install-openrazer
+          OpenRGB:
+            description: Open source RGB lighting control that doesn't depend on manufacturer software
+            default: false
+            packages:
+              - Install OpenRGB: ujust install-openrgb
+          OpenTabletDriver:
+            description: Open source, cross-platform, user-mode tablet driver
+            default: false
+            packages:
+              - Install OpenTabletDriver: ujust install-opentabletdriver
+          Oversteer:
+            description: Application to control supported steering wheels
+            default: false
+            packages:
+              - Install Oversteer: ujust install-oversteer
+          Wootility:
+            description: A configurator for Wooting keyboards
+            default: false
+            packages:
+              - Retrieve Wootility: ujust install-wootility
+          Resilio Sync:
+            description: A file synchronization utility powered by BitTorrent
+            default: false
+            packages:
+              - Install Resilio Sync: ujust install-resilio-sync
+          scrcpy:
+            description: scrcpy provides display and control of Android devices connected on USB (or over TCP/IP)
+            default: false
+            packages:
+              - Install scrcpy: ujust install-scrcpy
+
+    final-screen:
+      source: yafti.screen.title
+      values:
+        title: "All done!"
+        icon: "/path/to/icon"
+        links:
+          - "After installation README":
+              run: /usr/bin/xdg-open https://github.com/jechton/cozzite#After%20installation
+          - "Reboot now":
+              run: systemctl reboot
+        description: |
+          Complete your installation by following the post-installation instructions. Reboot to apply some changes.
