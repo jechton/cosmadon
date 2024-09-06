@@ -2,3 +2,5 @@ type: rpm-ostree
 remove:
   - fuse
   - fedora-flathub-remote
+  - firefox
+  - firefox-langpacks
