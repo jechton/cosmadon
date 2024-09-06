@@ -24,6 +24,7 @@ Cozzite also includes many security changes from [secureblue](https://github.com
 - Configure chronyd to use Network Time Security (NTS)
 - Disable core dumps
 - Disable VS Code telemetry settings
+- Remove unmaintained fuse
 - Set various hardened sysctl values
 
 ## Installation
