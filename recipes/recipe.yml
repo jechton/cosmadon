@@ -21,5 +21,7 @@ modules:
       - createautostartdir.sh
       - authselect.sh
       - httpsmirrors.sh
+  - type: justfiles
+    include: 70-secureblue.just
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
