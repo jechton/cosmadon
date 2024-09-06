@@ -1,22 +1,19 @@
-# image will be published to ghcr.io/<user>/<name>
 name: cozzite
-# description will be included in the image's metadata
-description: This is my personal OS image.
+description: Bazzite + COSMIC + security.
 
 # the base image to build on top of (FROM) and the version tag to use
 base-image: ghcr.io/ublue-os/bazzite-gnome
-image-version: stable # latest is also supported if you want new updates ASAP
+image-version: stable
 
 # module configuration, executed in order
 # you can include multiple instances of the same module
 modules:
+  - from-file: vscode.yml
+  - from-file: cosmic-rpm.yml
+  - from-file: cosmic-systemd.yml
   - type: files
     files:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
-
-  - from-file: vscode.yml
-  - from-file: cosmic-rpm.yml
-  - from-file: cosmic-systemd.yml
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully

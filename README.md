@@ -1,15 +1,29 @@
-# cozzite &nbsp; [![bluebuild build badge](https://github.com/jechton/cozzite/actions/workflows/build.yml/badge.svg)](https://github.com/jechton/cozzite/actions/workflows/build.yml)
+<h1 align="center">
+  cozzite
+</h1>
 
-See the [BlueBuild docs](https://blue-build.org/how-to/setup/) for quick setup instructions for setting up your own repository based on this template.
+<h2 align="center">
+Bazzite + COSMIC
+</h2>
 
-After setup, it is recommended you update this README to describe your custom image.
+[![build](https://github.com/jechton/cozzite/actions/workflows/build.yml/badge.svg)](https://github.com/jechton/cozzite/actions/workflows/build.yml)
+
+## Changes
+
+Cozzite builds off of bazzite-gnome, and leaves Gnome available since COSMIC is in an alpha state.
+
+It also includes some personal changes:
+
+- Adds VS Code
+
+Cozzite also includes many security changes from [secureblue](https://github.com/secureblue/secureblue):
+
+- Adds per-network MAC randomization
+- Disables VS Code telemetry settings
 
 ## Installation
 
-> **Warning**  
-> [This is an experimental feature](https://www.fedoraproject.org/wiki/Changes/OstreeNativeContainerStable), try at your own discretion.
-
-To rebase an existing atomic Fedora installation to the latest build:
+To rebase an existing atomic Fedora installation:
 
 - First rebase to the unsigned image, to get the proper signing keys and policies installed:
   ```
@@ -28,11 +42,18 @@ To rebase an existing atomic Fedora installation to the latest build:
   systemctl reboot
   ```
 
-The `latest` tag will automatically point to the latest build. That build will still always use the Fedora version specified in `recipe.yml`, so you won't get accidentally updated to the next major version.
-
 ## ISO
 
-If build on Fedora Atomic, you can generate an offline ISO with the instructions available [here](https://blue-build.org/learn/universal-blue/#fresh-install-from-an-iso). These ISOs cannot unfortunately be distributed on GitHub for free due to large sizes, so for public projects something else has to be used for hosting.
+ISOs cannot be distributed on GitHub due to file size restrictions. You can generate an offline ISO (`deploy.iso`) using `podman`:
+
+```
+sudo podman run --rm --privileged --volume .:/build-container-installer/build \
+      ghcr.io/jasonn3/build-container-installer:latest \
+      IMAGE_REPO=ghcr.io/jechton \
+      IMAGE_NAME=cozzite \
+      IMAGE_TAG=latest \
+      VARIANT=Silverblue
+```
 
 ## Verification
 

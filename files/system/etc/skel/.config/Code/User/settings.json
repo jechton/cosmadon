@@ -1,0 +1,4 @@
+{
+  "telemetry.telemetryLevel": "off",
+  "gitlens.telemetry.enabled": false
+}
