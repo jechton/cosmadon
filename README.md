@@ -47,6 +47,12 @@ To rebase an existing atomic Fedora installation:
   systemctl reboot
   ```
 
+### After installation
+
+Enroll the secureboot key: `ujust enroll-secure-boot-key`
+
+Set kargs: `ujust set-kargs-hardening`
+
 ## ISO
 
 ISOs cannot be distributed on GitHub due to file size restrictions. You can generate an offline ISO (`deploy.iso`) using `podman`:
