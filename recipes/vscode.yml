@@ -1,0 +1,6 @@
+type: rpm-ostree
+repos:
+  - code.repo
+keys: https://packages.microsoft.com/keys/microsoft.asc
+install:
+  - code
