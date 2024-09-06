@@ -19,6 +19,7 @@ It also includes some personal changes:
 Cozzite also includes many security changes from [secureblue](https://github.com/secureblue/secureblue):
 
 - Add password quality check
+- Add locking the user after multiple failed attempts
 - Add per-network MAC randomization
 - Blocklist unused kernel modules
 - Disable core dumps
