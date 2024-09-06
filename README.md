@@ -18,8 +18,10 @@ It also includes some personal changes:
 
 Cozzite also includes many security changes from [secureblue](https://github.com/secureblue/secureblue):
 
-- Adds per-network MAC randomization
-- Disables VS Code telemetry settings
+- Add per-network MAC randomization
+- Blocklist unused kernel modules
+- Disable core dumps
+- Disable VS Code telemetry settings
 
 ## Installation
 
