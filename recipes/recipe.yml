@@ -16,6 +16,8 @@ modules:
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
   - from-file: vscode.yml
+  - from-file: cosmic-rpm.yml
+  - from-file: cosmic-systemd.yml
 
   - type: default-flatpaks
     notify: true # Send notification after install/uninstall is finished (true/false)

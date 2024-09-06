@@ -1,0 +1,8 @@
+type: rpm-ostree
+repos:
+  - https://copr.fedorainfracloud.org/coprs/ryanabx/cosmic-epoch/repo/fedora-rawhide/ryanabx-cosmic-epoch-fedora-rawhide.repo
+install:
+  - cosmic-desktop
+  - power-profiles-daemon
+  - gnome-keyring
+  - NetworkManager-tui

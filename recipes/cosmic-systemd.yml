@@ -1,0 +1,8 @@
+type: systemd
+system:
+  disabled:
+    - gdm
+    - sddm
+  enabled:
+    - cosmic-greeter
+    - power-profiles-daemon
